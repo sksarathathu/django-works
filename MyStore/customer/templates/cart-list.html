@@ -1,0 +1,77 @@
+{%extends 'base.html'%}
+{%block body%}
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        {%for item in carts%}
+        
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6">
+                {%if item.product.image%}
+                     <img class="card-img-top mb-5 mb-md-0" src="{{item.product.image.url}}" alt="..." height="200px" width="60px"/>
+                {%else%}
+                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." height="200px" width="60px"/>
+
+                {%endif%}
+            </div>
+            <div class="col-md-6">
+                <div class="small mb-1">{{item.product.category}}</div>
+                <h1 class="display-5 fw-bolder">{{item.product.name}}</h1>
+                <div class="fs-5 mb-5">
+                    <span class="text-decoration-line-through">${{item.product.price}}</span>
+                    <span>${{item.product.price}}</span>
+                </div>
+                <p class="lead">{{item.date}}</p>
+                <div class="d-flex">
+                    <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                    <a class="btn btn-outline-dark flex-shrink-0" href="{%url 'place-order' item.id item.product.id%}" > <i class="bi-cart-fill me-1"></i>
+                        Buy now
+                    </a>
+                    <a class="btn btn-outline-danger flex-shrink-0 ms-auto" href="{%url 'cart-delete' item.id%}" >
+                        remove <i class="bi bi-trash"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <hr class="mt-2 mb-2">
+        {%endfor%}
+        
+    </div>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+        <div class="col-4">Total <strong>${{total.tot}} </strong>  
+            <a class="btn btn-outline-dark flex-shrink-0 ms-3" href="" > <i class="bi-cart-fill me-1"></i>
+            Buy all
+             </a>
+         </div>
+    </div>
+</section>
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                {%for item in items%}
+                <div class="list-group">
+                  <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                 
+                  <div class="d-flex w-100 justify-content-between">
+                    {%if product.image%}
+                    <img class="card-img-start" src="{{product.image.url}}" alt="..." />
+                    {%else%}
+                     <img class="card-img-start" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                    {%endif%}
+                    
+                        
+                      <h3 class="mb-1 ">{{item.product}}</h3>
+                      <small >{{item.date}}</small>
+                  
+                     </div>
+                    </a>
+                 </div>
+             {%endfor%}
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div> -->
+    
+{%endblock%}
